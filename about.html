@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Prespectra Space</title>
+  <meta name="description" content="Learn about Prespectra Space and our cutting-edge 3D spatial scanning and digital twins.">
+  <link rel="stylesheet" href="./styles.css">
+  <script>
+    (function() {
+      var lang = localStorage.getItem('lang') || 'en';
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      document.documentElement.setAttribute('lang', lang);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="header-nav" id="main-nav">
+    <a href="index.html" class="logo">
+      <span class="logo-icon"></span>
+      <span>Prespectra Space</span>
+    </a>
+    
+    <nav>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="index.html#twin-viewer" data-translate="nav_space_viewer">Space Viewer</a></li>
+        <li><a href="index.html#services" data-translate="nav_services">Services</a></li>
+        <li><a href="index.html#portfolio" data-translate="nav_portfolio">Portfolio</a></li>
+        <li><a href="index.html#pricing" data-translate="nav_pricing">Pricing</a></li>
+        <li><a href="about.html" class="active" data-translate="nav_about_us">About Us</a></li>
+      </ul>
+    </nav>
+    
+    <div class="nav-actions">
+      <button class="lang-toggle" id="lang-btn" aria-label="Toggle Language">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lang-globe-icon" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span id="lang-btn-text">العربية</span>
+      </button>
+      <a href="index.html#contact" class="btn-book" data-translate="nav_book">Book a Scan</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- About Hero Section -->
+  <section class="about-hero">
+    <div class="hero-grid-overlay"></div>
+    <div class="about-hero-content">
+      <h1 class="about-title" data-translate="about_title">About Prespectra Space</h1>
+      <p class="about-subtitle" data-translate="about_subtitle">Pioneering the Next Generation of 3D Spatial Intelligence</p>
+    </div>
+  </section>
+
+  <!-- About Details Section -->
+  <section class="about-content-section">
+    <div class="about-intro-grid reveal">
+      <div class="about-intro-text">
+        <p data-translate="about_intro_p1">At Prespectra, we bridge the gap between physical spaces and the digital universe. Using state-of-the-art LiDAR, photogrammetry, and spatial computing, we create ultra-precise, millimeter-accurate digital twins of premium real estate, complex commercial environments, and industrial facilities.</p>
+        <p data-translate="about_intro_p2">Our mission is to empower decision-makers, marketers, and developers with immersive virtual environments that look stunning, feel realistic, and contain actionable spatial intelligence.</p>
+        <div style="margin-top: 2rem;">
+          <a href="index.html" class="hero-cta-btn primary inline-btn">
+            <span data-translate="btn_back_home">Back to Home</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="about-intro-visual">
+        <div class="wireframe-box">
+          <div class="wireframe-grid"></div>
+          <div class="scanner-sweep"></div>
+          <span class="sensor-node node-1"></span>
+          <span class="sensor-node node-2"></span>
+          <span class="sensor-node node-3"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features / Pillars Grid -->
+    <div class="about-pillars-grid reveal" style="margin-top: 5rem;">
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="6"></circle>
+            <circle cx="12" cy="12" r="2"></circle>
+          </svg>
+        </div>
+        <h3 data-translate="about_pillar1_title">Millimeter Accuracy</h3>
+        <p data-translate="about_pillar1_desc">We utilize industrial-grade hardware capable of scanning up to 12.4 million points per second with tolerances under 0.5mm.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <h3 data-translate="about_pillar2_title">High-Fidelity Rendering</h3>
+        <p data-translate="about_pillar2_desc">Our custom pipelines ensure that spatial data loads instantly and renders with high cinematic fidelity.</p>
+      </div>
+
+      <div class="pillar-card">
+        <div class="pillar-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <h3 data-translate="about_pillar3_title">Intelligent Annotations</h3>
+        <p data-translate="about_pillar3_desc">We integrate interactive hotspots and live telemetry directly into the 3D model canvas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer-section">
+    <div class="footer-bottom" style="margin-top: 0; border-top: none; padding-top: 0;">
+      <p>© 2026 Prespectra Space. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Bubble -->
+  <div class="whatsapp-bubble" id="whatsapp-btn" title="Start Chat">
+    <svg class="whatsapp-icon" viewBox="0 0 24 24">
+      <path d="M12.012 2h-.012C6.48 2 2 6.48 2 12c0 2.17.7 4.21 2.02 5.92L2.06 22l4.23-1.95c1.62.9 3.47 1.37 5.71 1.37 5.53 0 10.01-4.48 10.01-10S17.54 2 12.012 2zm5.72 13.9c-.25.7-.97 1.25-1.67 1.45-.55.15-1.27.3-3.69-.7-3.08-1.27-5.07-4.42-5.22-4.62-.15-.2-1.2-1.6-1.2-3.05 0-1.45.75-2.17 1.02-2.46.27-.29.6-.36.8-.36h.57c.18 0 .42-.07.66.49.25.61.85 2.08.92 2.23.07.15.12.33.02.53-.1.2-.2.31-.38.52-.18.2-.38.44-.54.6-.18.18-.37.38-.16.74.21.36.95 1.57 2.03 2.53 1.39 1.24 2.56 1.63 2.92 1.81.36.18.57.15.79-.1.22-.25.92-1.07 1.17-1.44.25-.37.5-.31.84-.18.34.13 2.17 1.02 2.54 1.2.37.18.61.27.7.42.09.15.09.87-.16 1.57z"/>
+    </svg>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to Top" data-translate-title="btn_scroll_top">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
+
+  <!-- Main scripts -->
+  <script type="module" src="./about.js"></script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prespectra Space | Premium Digital Twins & 3D Spatial Scanning</title>
+  <meta name="description" content="Sleek, ultra-modern spatial scanning and 3D digital twins for premium real estate, luxury apartments, and commercial spaces. Immersive high-definition virtual tours.">
+  <link rel="stylesheet" href="./styles.css">
+  <script>
+    (function() {
+      var lang = localStorage.getItem('lang') || 'en';
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      document.documentElement.setAttribute('lang', lang);
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="header-nav" id="main-nav">
+    <a href="index.html" class="logo">
+      <span class="logo-icon"></span>
+      <span>Prespectra Space</span>
+    </a>
+    
+    <nav>
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="#twin-viewer" data-translate="nav_space_viewer">Space Viewer</a></li>
+        <li><a href="#services" data-translate="nav_services">Services</a></li>
+        <li><a href="#portfolio" data-translate="nav_portfolio">Portfolio</a></li>
+        <li><a href="#pricing" data-translate="nav_pricing">Pricing</a></li>
+        <li><a href="about.html" data-translate="nav_about_us">About Us</a></li>
+      </ul>
+    </nav>
+    
+    <div class="nav-actions">
+      <button class="lang-toggle" id="lang-btn" aria-label="Toggle Language">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lang-globe-icon" style="flex-shrink: 0;"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span id="lang-btn-text">العربية</span>
+      </button>
+      <button class="btn-book" onclick="document.getElementById('contact').scrollIntoView();" data-translate="nav_book">Book a Scan</button>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-video-container">
+      <video class="hero-video" autoplay loop muted playsinline>
+        <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c02277350c43d9a322592b2c459d75f5&profile_id=139" type="video/mp4">
+        <!-- Backup source -->
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-apartment-interior-design-40118-large.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-grid-overlay"></div>
+      <div class="hero-scanner-line"></div>
+    </div>
+    
+    <div class="hero-content">
+      <div class="hero-title-wrapper">
+        <h1 class="hero-title" data-translate="hero_title">ELEVATE SPATIAL EXPERIENCES</h1>
+      </div>
+      <p class="hero-subtitle" data-translate="hero_subtitle">Immersive Digital Twins & 3D Tours.</p>
+      <div class="hero-actions reveal">
+        <button class="hero-cta-btn primary" onclick="document.getElementById('twin-viewer').scrollIntoView();">
+          <span data-translate="hero_cta">Explore Digital Twin</span>
+          <span class="btn-arrow">→</span>
+        </button>
+        <button class="hero-cta-btn secondary" onclick="document.getElementById('services').scrollIntoView();">
+          <span data-translate="hero_secondary_cta">Services</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating HUD panel on the right -->
+    <div class="hero-hud-panel desktop-only reveal">
+      <div class="hud-header">
+        <span class="hud-title" data-translate="hud_title">SYSTEM SCANNING</span>
+        <span class="hud-status" data-translate="hud_status">ACTIVE</span>
+      </div>
+      <div class="hud-body">
+        <div class="hud-stat">
+          <div class="hud-stat-label" data-translate="hud_stat1_lbl">Capture Rate</div>
+          <div class="hud-stat-value" data-translate="hud_stat1_val">12.4M pts/sec</div>
+        </div>
+        <div class="hud-stat">
+          <div class="hud-stat-label" data-translate="hud_stat2_lbl">Accuracy Tolerance</div>
+          <div class="hud-stat-value" data-translate="hud_stat2_val">&lt; 0.5mm</div>
+        </div>
+        <div class="hud-stat">
+          <div class="hud-stat-label" data-translate="hud_stat3_lbl">Spatial Mesh Density</div>
+          <div class="hud-stat-value" data-translate="hud_stat3_val">Ultra-HD Mesh</div>
+        </div>
+      </div>
+      <div class="hud-footer">
+        <div class="hud-progress-bar">
+          <div class="hud-progress-fill"></div>
+        </div>
+        <span class="hud-progress-pct" data-translate="hud_progress_pct">Optimizing Digital Twin...</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3D Interactive Dollhouse Section -->
+  <section class="section-3d" id="twin-viewer">
+    <div class="section-header reveal">
+      <h2 data-translate="section_3d_title">Interactive Space Viewer</h2>
+      <p data-translate="section_3d_subtitle">Experience a live digital twin prototype. Rotate, zoom, and interact with measurement hotspots.</p>
+    </div>
+    
+    <div class="dashboard-3d reveal">
+      <!-- Three.js Viewport -->
+      <div class="viewer-container">
+        <!-- Info Tooltip inside 3D View -->
+        <div class="space-info-tooltip" id="space-tooltip">
+          <div class="space-info-title" id="tooltip-title">Conference Room</div>
+          <div class="space-info-detail" id="tooltip-detail">Area: 480 sq ft | Click for details</div>
+        </div>
+        
+        <canvas class="three-canvas" id="three-canvas"></canvas>
+        
+        <!-- Loading spinner -->
+        <div class="viewer-loader" id="viewer-loader">
+          <div class="loader-spinner"></div>
+          <div class="loader-text" data-translate="viewer_loading">Loading 3D Digital Twin...</div>
+        </div>
+        
+        <!-- Overlay UI buttons inside canvas -->
+        <div class="viewer-overlay-ui">
+          <button class="viewer-ui-btn active" id="btn-dollhouse-view" data-translate="btn_dollhouse">Dollhouse View</button>
+          <button class="viewer-ui-btn" id="btn-floorplan-view" data-translate="btn_floorplan">Floor Plan</button>
+        </div>
+      </div>
+      
+      <!-- Control sidebar panel -->
+      <div class="dashboard-sidebar">
+        <div class="sidebar-card">
+          <h3 class="sidebar-card-title" data-translate="lbl_metrics_title">Digital Twin Metrics</h3>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-val">3,850</div>
+              <div class="stat-lbl" id="lbl-total-area">Total Area (m²)</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-val">99.8%</div>
+              <div class="stat-lbl" id="lbl-accuracy">Accuracy</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-val">0.05"</div>
+              <div class="stat-lbl" id="lbl-resolution">Resolution</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-val">12</div>
+              <div class="stat-lbl" id="lbl-hotspots">Hotspots</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="sidebar-card">
+          <h3 class="sidebar-card-title" data-translate="lbl_simulations_title">Simulations</h3>
+          <div class="action-list">
+            <button class="action-btn" id="btn-toggle-measurements">
+              <span data-translate="btn_measurements">Toggle Measurements</span>
+              <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg>
+            </button>
+            <button class="action-btn" id="btn-toggle-rotate">
+              <span data-translate="btn_rotate">Auto-Rotate</span>
+              <svg viewBox="0 0 24 24"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm-6 8c0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3c-3.31 0-6-2.69-6-6z"/></svg>
+            </button>
+            <button class="action-btn" id="btn-reset-cam">
+              <span data-translate="btn_reset">Reset View</span>
+              <svg viewBox="0 0 24 24"><path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L5.7 17.72C4.63 16.03 4 14.09 4 12c0-4.42 3.58-8 8-8zm6.76 3.74L17.3 11.2C17.75 12.03 18 12.97 18 14c0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-2.09-.63-4.03-1.7-5.72z"/></svg>
+            </button>
+          </div>
+        </div>
+        
+        <div class="viewer-tip-container">
+          <p data-translate="viewer_tip">Tip: Drag to rotate, scroll to zoom, click hotspots for area info.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section-services" id="services">
+    <div class="section-header reveal">
+      <h2 data-translate="services_title">Our Services</h2>
+      <p data-translate="services_subtitle">Cutting-edge spatial capturing and simulation solutions.</p>
+    </div>
+    
+    <div class="services-grid reveal">
+      <!-- Card 2 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+        </div>
+        <h3 data-translate="service2_title">Immersive Digital Twins & Virtual Tours</h3>
+        <p data-translate="service2_desc">Highly accurate, fully interactive virtual spaces. Enable clients, buyers, or tenants to explore premium properties through seamless, immersive digital walkthroughs from anywhere in the world.</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+        </div>
+        <h3 data-translate="service3_title">Promotional Content</h3>
+        <p data-translate="service3_desc">Cinematic property walkthroughs, custom highlight reels, and interactive marketing assets designed to tell a compelling story, capture interest, and elevate your listing's digital presence.</p>
+      </div>
+      <!-- Card 4 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+        </div>
+        <h3 data-translate="service4_title">Aerial Drone Mapping (soon)</h3>
+        <p data-translate="service4_desc">High-resolution orthomosaic mapping and cinematic aerial scans to showcase premium properties, land development, and surroundings.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="section-portfolio" id="portfolio">
+    <div class="section-header reveal">
+      <h2 data-translate="portfolio_title">Featured Scans</h2>
+      <p data-translate="portfolio_subtitle">A curated collection of luxury residential, commercial, and gallery spaces captured by Prespectra.</p>
+    </div>
+       <div class="portfolio-grid reveal">
+      <!-- Item 1 -->
+      <a href="https://my.matterport.com/show/?m=Hx7t1MsKi3W&log=0&help=0&nt=0&play=0&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=1&kb=1&lp=0&title=1&tourcta=1&vr=1" target="_blank" rel="noopener" class="portfolio-card">
+        <img class="portfolio-img" src="./assets/portfolio-1.png" alt="Travel and Hospitality">
+        <div class="portfolio-mesh-overlay"></div>
+        <div class="portfolio-info">
+          <h3 data-translate="portfolio_item1_title">Travel and Hospitality</h3>
+        </div>
+      </a>
+      <!-- Item 2 -->
+      <a href="https://my.matterport.com/show/?m=jm5WwEA3HUN&log=0&help=0&nt=0&play=1&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=1&kb=1&lp=0&title=0&tourcta=1&vr=1" target="_blank" rel="noopener" class="portfolio-card">
+        <img class="portfolio-img" src="./assets/portfolio-2.png" alt="Residential Real Estate">
+        <div class="portfolio-mesh-overlay"></div>
+        <div class="portfolio-info">
+          <h3 data-translate="portfolio_item2_title">Residential Real Estate</h3>
+        </div>
+      </a>
+      <!-- Item 3 -->
+      <a href="https://my.matterport.com/show/?m=18TRzZNyxvU&log=0&help=0&nt=0&play=1&qs=0&brand=1&dh=1&tour=1&gt=1&hr=1&mls=0&mt=1&tagNav=1&pin=1&portal=1&f=1&fp=1&nozoom=0&search=1&wh=1&kb=1&lp=0&title=0&tourcta=1&vr=1" target="_blank" rel="noopener" class="portfolio-card">
+        <img class="portfolio-img" src="./assets/portfolio-3.png" alt="Commercial Real Estate">
+        <div class="portfolio-mesh-overlay"></div>
+        <div class="portfolio-info">
+          <h3 data-translate="portfolio_item3_title">Commercial Real Estate</h3>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Pricing & Calculator Section -->
+  <section class="section-pricing" id="pricing">
+    <div class="section-header reveal">
+      <h2 data-translate="pricing_title">Transparent B2B Pricing</h2>
+      <p data-translate="pricing_subtitle">Predictable packages and a standardized custom quoting mechanism to support enterprise workloads.</p>
+    </div>
+    
+    <!-- Visual Tier Grid -->
+    <div class="pricing-tabs reveal" style="display: flex; justify-content: center; gap: 2rem; align-items: stretch; flex-wrap: wrap;">
+      <!-- Tier 1 -->
+      <div class="pricing-card">
+        <div>
+          <h3 class="tier-name" data-translate="pricing_tier_pro">Core Digital Twin</h3>
+          <div class="tier-price">$500<span class="tier-sub" data-translate="pricing_tier_pro_sub">(Up to 300m²)</span></div>
+          <ul class="tier-features" id="features-pro">
+            <!-- Populated via script.js -->
+          </ul>
+        </div>
+        <button class="btn-select-tier" data-translate="btn_select" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+      </div>
+      
+      <!-- Tier 2 -->
+      <div class="pricing-card popular">
+        <span class="popular-badge" data-translate="pricing_popular_badge">BEST CHOICE</span>
+        <div>
+          <h3 class="tier-name" data-translate="pricing_tier_premium">24/7 Open House</h3>
+          <div class="tier-price">$2,500<span class="tier-sub" data-translate="pricing_tier_premium_sub">(Includes 3 Models)</span></div>
+          <ul class="tier-features" id="features-premium">
+            <!-- Populated via script.js -->
+          </ul>
+        </div>
+        <button class="btn-select-tier" data-translate="btn_select" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+      </div>
+      
+      <!-- Tier 3 -->
+      <div class="pricing-card">
+        <div>
+          <h3 class="tier-name" data-translate="pricing_tier_enterprise">Immersive Digital Twin</h3>
+          <div class="tier-price">$4,000<span class="tier-sub" data-translate="pricing_tier_enterprise_sub">(Includes 3 Models)</span></div>
+          <ul class="tier-features" id="features-enterprise">
+            <!-- Populated via script.js -->
+          </ul>
+        </div>
+        <button class="btn-select-tier" data-translate="btn_contact_sales" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+      </div>
+    </div>
+
+    <!-- B2B Add-Ons Menu -->
+    <div class="addons-section reveal" style="margin-top: 5rem; margin-bottom: 5rem;">
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <h3 data-translate="pricing_addons_title" style="font-size: 1.8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--accent-cyan);">Strategic B2B Add-Ons</h3>
+        <p data-translate="pricing_addons_subtitle" style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">Enhance your digital twin with professional deliverables.</p>
+      </div>
+      <div class="addons-grid">
+        <div class="addon-card">
+          <h4 class="addon-title" data-translate="pricing_addon_fp_desc">Schematic Floor Plans</h4>
+          <p class="addon-detail" data-translate="pricing_addon_fp_detail">Clean 2D architectural structural layouts detailing precise room dimensions.</p>
+        </div>
+        <div class="addon-card">
+          <h4 class="addon-title" data-translate="pricing_addon_video_desc">Cinematic Video Reels</h4>
+          <p class="addon-detail" data-translate="pricing_addon_video_detail">High-impact property walkthroughs or custom vertical social media cuts.</p>
+        </div>
+        <div class="addon-card">
+          <h4 class="addon-title" data-translate="pricing_addon_photos_desc">Extra HDR Photos</h4>
+          <p class="addon-detail" data-translate="pricing_addon_photos_detail">For highlighting specific high-end architectural finishes or custom majlis zones.</p>
+        </div>
+        <div class="addon-card">
+          <h4 class="addon-title" data-translate="pricing_addon_host_desc">Cloud Hosting Renewal</h4>
+          <p class="addon-detail" data-translate="pricing_addon_host_detail">Extends active web link hosting and twin dashboard access for an additional 6 months.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2B Enterprise Callout Section -->
+    <div class="b2b-custom-section reveal" style="margin-top: 5rem; border-top: 1px solid var(--border-color); padding-top: 5rem; text-align: center;">
+      <div style="max-width: 750px; margin: 0 auto 2.5rem;">
+        <h3 data-translate="pricing_b2b_custom_title" style="font-size: 1.8rem; text-transform: uppercase; letter-spacing: .05em; color: var(--accent-cyan);">Enterprise & Custom Projects</h3>
+        <p data-translate="pricing_b2b_custom_subtitle" style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.8rem; line-height: 1.6;">
+          For complex architectures, highly-partitioned environments, or multi-property B2B portfolios, we offer standardized custom quotation frameworks. Contact our team to receive a tailored enterprise proposal.
+        </p>
+      </div>
+      <button class="btn-book" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" data-translate="pricing_b2b_custom_btn">Request Custom Quote</button>
+    </div>
+
+
+  </section>
+
+  <!-- Footer Section & Contact Quote Form -->
+  <footer class="footer-section" id="contact">
+    <div class="footer-grid">
+      <div class="footer-info-column">
+        <div class="logo">
+          <span class="logo-icon"></span>
+          <span>Prespectra Space</span>
+        </div>
+        <p data-translate="contact_subtitle">Get in touch with our team for a customized quote or to book a spatial capture session.</p>
+        
+        <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem; color: var(--text-muted);">
+          <div><strong data-translate="footer_email">Email:</strong> <a href="mailto:scans@prespectraspace.com" class="email-link">scans@prespectraspace.com</a></div>
+          <div><strong data-translate="footer_tel">Tel:</strong> <a href="tel:+9647709026327" class="tel-link" dir="ltr">+964 770 902 6327</a> - <a href="tel:+9647807306365" class="tel-link" dir="ltr">+964 780 730 6365</a></div>
+        </div>
+      </div>
+      
+      <!-- Contact Quote Form -->
+      <div class="contact-form-box">
+        <h3 class="contact-form-title" data-translate="contact_title">Initiate Your Scan</h3>
+        <form id="quote-form" onsubmit="event.preventDefault();">
+          <div class="form-grid">
+            <input type="text" class="form-input" id="form-name" placeholder="Your Name" required data-translate-placeholder="contact_name">
+            <input type="email" class="form-input" id="form-email" placeholder="Email Address" required data-translate-placeholder="contact_email">
+            <input type="tel" class="form-input" id="form-phone" placeholder="Phone Number" required data-translate-placeholder="contact_phone">
+            <input type="text" class="form-input" id="form-size" placeholder="Approximate Space Size" required data-translate-placeholder="contact_space_size">
+            <textarea class="form-input form-full" id="form-details" placeholder="Project details or custom requests..." data-translate-placeholder="contact_details"></textarea>
+          </div>
+          <button class="btn-submit" type="submit" id="submit-btn" data-translate="contact_btn">GET YOUR FREE QUOTE</button>
+          <div class="form-msg" id="form-response"></div>
+        </form>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>© 2026 Prespectra Space. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Bubble -->
+  <div class="whatsapp-bubble" id="whatsapp-btn" title="Start Chat">
+    <svg class="whatsapp-icon" viewBox="0 0 24 24">
+      <path d="M12.012 2h-.012C6.48 2 2 6.48 2 12c0 2.17.7 4.21 2.02 5.92L2.06 22l4.23-1.95c1.62.9 3.47 1.37 5.71 1.37 5.53 0 10.01-4.48 10.01-10S17.54 2 12.012 2zm5.72 13.9c-.25.7-.97 1.25-1.67 1.45-.55.15-1.27.3-3.69-.7-3.08-1.27-5.07-4.42-5.22-4.62-.15-.2-1.2-1.6-1.2-3.05 0-1.45.75-2.17 1.02-2.46.27-.29.6-.36.8-.36h.57c.18 0 .42-.07.66.49.25.61.85 2.08.92 2.23.07.15.12.33.02.53-.1.2-.2.31-.38.52-.18.2-.38.44-.54.6-.18.18-.37.38-.16.74.21.36.95 1.57 2.03 2.53 1.39 1.24 2.56 1.63 2.92 1.81.36.18.57.15.79-.1.22-.25.92-1.07 1.17-1.44.25-.37.5-.31.84-.18.34.13 2.17 1.02 2.54 1.2.37.18.61.27.7.42.09.15.09.87-.16 1.57z"/>
+    </svg>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top-btn" id="scroll-top-btn" aria-label="Scroll to Top" data-translate-title="btn_scroll_top">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
+
+  <!-- Main scripts -->
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
