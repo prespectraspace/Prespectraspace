@@ -87,7 +87,49 @@ function initApp() {
   initScrollReveal();
 
   // Handle Form Submission
-  quoteForm.addEventListener('submit', handleFormSubmit);
+  const form = document.getElementById('quote-form');
+  const responseMsg = document.getElementById('form-response');
+
+  if (form) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (responseMsg) responseMsg.textContent = 'Sending request...';
+
+      const payload = {
+        name: document.getElementById('form-name')?.value || '',
+        email: document.getElementById('form-email')?.value || '',
+        phone: document.getElementById('form-phone')?.value || '',
+        spaceSize: document.getElementById('form-size')?.value || '',
+        details: document.getElementById('form-details')?.value || ''
+      };
+
+      try {
+        const response = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          if (responseMsg) {
+            responseMsg.style.color = '#00f5ff';
+            responseMsg.textContent = 'Quote request received successfully!';
+          }
+          form.reset();
+        } else {
+          if (responseMsg) {
+            responseMsg.style.color = '#ff4a4a';
+            responseMsg.textContent = 'Submission failed. Please try again.';
+          }
+        }
+      } catch (error) {
+        if (responseMsg) {
+          responseMsg.style.color = '#ff4a4a';
+          responseMsg.textContent = 'Network error. Please try again later.';
+        }
+      }
+    });
+  }
 
   // WhatsApp redirection
   whatsappBtn.addEventListener('click', () => {
@@ -199,29 +241,3 @@ function initScrollReveal() {
   revealElements.forEach(el => observer.observe(el));
 }
 
-// Form handling
-function handleFormSubmit(e) {
-  const t = translations[currentLang];
-  const submitBtn = document.getElementById('submit-btn');
-  
-  // Visual button states
-  submitBtn.disabled = true;
-  const originalText = submitBtn.textContent;
-  submitBtn.textContent = currentLang === 'en' ? "Sending..." : "جاري الإرسال...";
-
-  // Simulated server request timeout
-  setTimeout(() => {
-    formResponse.className = 'form-msg success';
-    formResponse.textContent = t.contact_success;
-    quoteForm.reset();
-    
-    // Clear response after 5 seconds
-    setTimeout(() => {
-      formResponse.style.display = 'none';
-      formResponse.className = 'form-msg';
-    }, 5000);
-    
-    submitBtn.disabled = false;
-    submitBtn.textContent = originalText;
-  }, 1200);
-}
