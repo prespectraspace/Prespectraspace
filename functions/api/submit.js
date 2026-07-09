@@ -27,8 +27,8 @@ export async function onRequestPost(context) {
       );
     }
 
-    // Determine target inbox (using FORWARD_TO_EMAIL env or default scans@prespectra-space.com)
-    const destinationEmail = env.FORWARD_TO_EMAIL || "scans@prespectra-space.com";
+    // Determine target inbox (using FORWARD_TO_EMAIL env or default prespectraspace@gmail.com)
+    const destinationEmail = env.FORWARD_TO_EMAIL || "prespectraspace@gmail.com";
 
     // Format the plaintext form details for the value field
     const textContent = `New Website Inquiry Details:\n\n` +
