@@ -9,9 +9,6 @@ const langBtn = document.getElementById('lang-btn');
 const mainNav = document.getElementById('main-nav');
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-menu');
-// (Pricing estimator elements deleted)
-const quoteForm = document.getElementById('quote-form');
-const formResponse = document.getElementById('form-response');
 const whatsappBtn = document.getElementById('whatsapp-btn');
 const scrollTopBtn = document.getElementById('scroll-top-btn');
 
@@ -93,7 +90,12 @@ function initApp() {
   if (form) {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      if (responseMsg) responseMsg.textContent = 'Sending request...';
+      const t = translations[currentLang] || translations['en'];
+      
+      if (responseMsg) {
+        responseMsg.style.color = '#ffffff';
+        responseMsg.textContent = currentLang === 'en' ? 'Sending request...' : 'جاري إرسال الطلب...';
+      }
 
       const payload = {
         name: document.getElementById('form-name')?.value || '',
@@ -113,19 +115,19 @@ function initApp() {
         if (response.ok) {
           if (responseMsg) {
             responseMsg.style.color = '#00f5ff';
-            responseMsg.textContent = 'Quote request received successfully!';
+            responseMsg.textContent = t.contact_success || 'Quote request received successfully!';
           }
           form.reset();
         } else {
           if (responseMsg) {
             responseMsg.style.color = '#ff4a4a';
-            responseMsg.textContent = 'Submission failed. Please try again.';
+            responseMsg.textContent = t.contact_error || 'Submission failed. Please try again.';
           }
         }
       } catch (error) {
         if (responseMsg) {
           responseMsg.style.color = '#ff4a4a';
-          responseMsg.textContent = 'Network error. Please try again later.';
+          responseMsg.textContent = t.contact_error || 'Network error. Please try again later.';
         }
       }
     });
