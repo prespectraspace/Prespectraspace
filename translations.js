@@ -58,7 +58,8 @@ export const translations = {
       "Digital Measurement Toolkit",
       "10 High-Fidelity HDR Marketing Photos",
       "6 Months Secured Cloud Hosting",
-      "Ideal for Single Properties < 300m²"
+      "Ideal for Single Properties < 300m²",
+      "24/7 Online Support"
     ],
     pricing_tier_premium_features: [
       "Includes 3 Models (Houses or Apartments)",
@@ -67,7 +68,9 @@ export const translations = {
       "Digital Measurement Toolkit",
       "15 High-Fidelity HDR Marketing Photos",
       "12 Months Secured Cloud Hosting",
-      "1 Cinematic Virtual Tour Video Reel (per property)"
+      "1 Cinematic Virtual Tour Video Reel (per property)",
+      "24/7 Online Support",
+      "3 Days of Staff Support & Hands-on Training"
     ],
     pricing_tier_enterprise_features: [
       "Includes 3 Models (Houses or Apartments)",
@@ -77,7 +80,9 @@ export const translations = {
       "30 Total High-Fidelity HDR Photos (Int/Ext/Community)",
       "24 Months Extended Cloud Hosting",
       "3 Dedicated Cinematic Video Reels (1 long + 2 short)",
-      "Meta Quest 3 + VR Tech Integration"
+      "Meta Quest 3 + VR Tech Integration",
+      "24/7 Online Support",
+      "3 Days of Staff Support & Hands-on Training"
     ],
     btn_select: "Get Started",
     btn_contact_sales: "Get Started",
@@ -192,7 +197,8 @@ export const translations = {
       "أدوات قياس رقمية مدمجة للتحقق من المساحة",
       "١٠ لقطات تسويقية عالية الدقة HDR",
       "استضافة سحابية آمنة لمدة ٦ أشهر",
-      "مثالي للعقارات الفردية أقل من ٣٠٠ م²"
+      "مثالي للعقارات الفردية أقل من ٣٠٠ م²",
+      "دعم فني عبر الإنترنت على مدار الساعة ٢٤/٧"
     ],
     pricing_tier_premium_features: [
       "يشمل ٣ نماذج (منازل أو شقق)",
@@ -201,7 +207,9 @@ export const translations = {
       "أدوات قياس رقمية مدمجة للتحقق من المساحة",
       "١٥ لقطة تسويقية عالية الدقة HDR",
       "استضافة سحابية آمنة لمدة ١٢ شهراً",
-      "فيديو سينمائي ترويجي واحد للجولة الافتراضية (لكل عقار)"
+      "فيديو سينمائي ترويجي واحد للجولة الافتراضية (لكل عقار)",
+      "دعم فني عبر الإنترنت على مدار الساعة ٢٤/٧",
+      "٣ أيام من الدعم المباشر والتدريب العملي لفريقكم"
     ],
     pricing_tier_enterprise_features: [
       "يشمل ٣ نماذج (منازل أو شقق)",
@@ -211,7 +219,9 @@ export const translations = {
       "٣٠ لقطة تسويقية عالية الدقة HDR (داخلية، خارجية، ومحيطية)",
       "استضافة سحابية ممتدة لمدة ٢٤ شهراً",
       "٣ مقاطع فيديو سينمائية مخصصة (١ طويل + ٢ قصير)",
-      "تكامل مع تقنية الواقع الافتراضي Meta Quest 3"
+      "تكامل مع تقنية الواقع الافتراضي Meta Quest 3",
+      "دعم فني عبر الإنترنت على مدار الساعة ٢٤/٧",
+      "٣ أيام من الدعم المباشر والتدريب العملي لفريقكم"
     ],
     btn_select: "ابدأ الآن",
     btn_contact_sales: "ابدأ الآن",
