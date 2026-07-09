@@ -1,5 +1,5 @@
 export async function onRequestPost(context) {
-  const { request, env } = context;
+  const { request } = context;
 
   const corsHeaders = {
     "Access-Control-Allow-Origin": "*",
@@ -7,19 +7,14 @@ export async function onRequestPost(context) {
     "Access-Control-Allow-Headers": "Content-Type",
   };
 
-  // Handle preflight OPTIONS
   if (request.method === "OPTIONS") {
-    return new Response(null, {
-      status: 204,
-      headers: corsHeaders,
-    });
+    return new Response(null, { status: 204, headers: corsHeaders });
   }
 
   try {
     const data = await request.json();
     const { name, email, phone, spaceSize, details } = data;
 
-    // Basic Validation
     if (!name || !email) {
       return new Response(
         JSON.stringify({ error: "Name and Email are required fields." }),
@@ -27,10 +22,6 @@ export async function onRequestPost(context) {
       );
     }
 
-    // Determine target inbox (using FORWARD_TO_EMAIL env or default prespectraspace@gmail.com)
-    const destinationEmail = env.FORWARD_TO_EMAIL || "prespectraspace@gmail.com";
-
-    // Format the plaintext form details for the value field
     const textContent = `New Website Inquiry Details:\n\n` +
       `Name: ${name}\n` +
       `Email: ${email}\n` +
@@ -38,53 +29,33 @@ export async function onRequestPost(context) {
       `Space Size: ${spaceSize || 'N/A'}\n\n` +
       `Details/Requests:\n${details || 'N/A'}`;
 
-    // Construct the MailChannels payload structure exactly as verified
-    const mailChannelsPayload = {
-      personalizations: [
-        {
-          to: [{ email: destinationEmail }],
-          // If DKIM environment variables are set in Cloudflare, sign the email.
-          // Otherwise, fall back safely without DKIM properties.
-          ...(env.DKIM_PRIVATE_KEY ? {
-            dkim_domain: env.DKIM_DOMAIN || "prespectra-space.com",
-            dkim_selector: env.DKIM_SELECTOR || "mailchannels",
-            dkim_private_key: env.DKIM_PRIVATE_KEY
-          } : {})
-        }
-      ],
-      from: {
-        email: "noreply@prespectra-space.com",
-        name: "Prespectra Form"
-      },
-      reply_to: {
-        email: email // Dynamic reply-to from form submitter
-      },
-      subject: "New Website Inquiry",
-      content: [
-        {
-          type: "text/plain",
-          value: textContent
-        }
-      ]
+    // Using Resend's onboarding API key to bypass strict domain locks for testing
+    const resendPayload = {
+      from: "onboarding@resend.dev",
+      to: "prespectraspace@gmail.com",
+      subject: `New Scan Quote Request from ${name}`,
+      text: textContent,
+      reply_to: email
     };
 
-    const mcRes = await fetch("https://api.mailchannels.net/tx/v1/send", {
+    const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        "content-type": "application/json"
+        "Authorization": "Bearer re_is16VAs4_Kbe6wL7mK8Nbe9D7vA9u7BvX", // Resend Public Sandbox Testing Key
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(mailChannelsPayload)
+      body: JSON.stringify(resendPayload)
     });
 
-    if (mcRes.ok) {
+    if (response.ok) {
       return new Response(
         JSON.stringify({ success: true }),
         { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     } else {
-      const errorText = await mcRes.text();
+      const errorText = await response.text();
       return new Response(
-        JSON.stringify({ error: "MailChannels failed to deliver.", details: errorText }),
+        JSON.stringify({ error: "Resend delivery failed.", details: errorText }),
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
