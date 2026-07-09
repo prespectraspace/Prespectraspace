@@ -102,6 +102,7 @@ button, input, select, textarea {
   justify-content: space-between;
   align-items: center;
   transition: var(--transition-smooth);
+  direction: ltr;
 }
 
 .header-nav.scrolled {
@@ -643,9 +644,16 @@ html[dir="rtl"] .hero-hud-panel {
   height: 550px;
   background: #09090d;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(0, 229, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
   position: relative;
   overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.viewer-container:hover {
+  border-color: rgba(0, 229, 255, 0.6);
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.25);
 }
 
 .three-canvas {
@@ -1530,27 +1538,13 @@ html[dir="rtl"] .whatsapp-bubble {
     padding: 2rem;
   }
   
-  html[dir="rtl"] .nav-links {
-    right: auto;
-    left: -100%;
-    border-left: none;
-    border-right: 1px solid var(--border-color);
-  }
-  
   .nav-links.active {
     right: 0;
-  }
-  html[dir="rtl"] .nav-links.active {
-    left: 0;
   }
   
   .nav-actions {
     margin-right: 0;
     gap: 1.2rem;
-  }
-  html[dir="rtl"] .nav-actions {
-    margin-right: 0;
-    margin-left: 0;
   }
   
   .header-nav .btn-book {
