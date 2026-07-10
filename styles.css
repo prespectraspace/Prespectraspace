@@ -1486,7 +1486,7 @@ html[dir="rtl"] .whatsapp-bubble {
 }
 
 /* Responsive Grid Media Queries */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .dashboard-3d {
     grid-template-columns: 1fr;
   }
@@ -1500,7 +1500,20 @@ html[dir="rtl"] .whatsapp-bubble {
   display: none;
 }
 
-@media (max-width: 1024px) {
+/* Medium Desktop: prevent navbar elements from crowding/overlapping the logo */
+@media (min-width: 1201px) and (max-width: 1350px) {
+  .nav-links {
+    gap: 1.2rem;
+  }
+  .header-nav {
+    padding: 1.25rem 3%;
+  }
+  .logo {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 1200px) {
   .logo {
     font-size: 1.15rem;
   }
