@@ -91,43 +91,73 @@ function initApp() {
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       const t = translations[currentLang] || translations['en'];
+      const submitBtn = document.getElementById('submit-btn');
+      
+      // Visual button states and disable submission
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.setAttribute('data-original-text', submitBtn.textContent);
+        submitBtn.textContent = currentLang === 'en' ? "Sending..." : "جاري الإرسال...";
+      }
       
       if (responseMsg) {
+        responseMsg.className = 'form-msg';
+        responseMsg.style.display = 'block';
         responseMsg.style.color = '#ffffff';
         responseMsg.textContent = currentLang === 'en' ? 'Sending request...' : 'جاري إرسال الطلب...';
       }
 
-      const payload = {
-        name: document.getElementById('form-name')?.value || '',
-        email: document.getElementById('form-email')?.value || '',
-        phone: document.getElementById('form-phone')?.value || '',
-        spaceSize: document.getElementById('form-size')?.value || '',
-        details: document.getElementById('form-details')?.value || ''
-      };
+      const formData = new FormData(form);
+
+      // Web3Forms public access key
+      formData.append("access_key", "6dfa4e30-c39d-4267-bb46-f0eb611e2bd0"); 
+      formData.append("subject", "New Scan Quote Request - Prespectra");
+      formData.append("from_name", "Prespectra Webform");
 
       try {
-        const response = await fetch('/api/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
         });
 
-        if (response.ok) {
+        const result = await response.json();
+        if (result.success) {
+          alert("Form submitted successfully!");
           if (responseMsg) {
-            responseMsg.style.color = '#00f5ff';
+            responseMsg.className = 'form-msg success';
+            responseMsg.style.display = 'block';
             responseMsg.textContent = t.contact_success || 'Quote request received successfully!';
           }
           form.reset();
+          
+          // Clear message after 5 seconds
+          setTimeout(() => {
+            if (responseMsg) {
+              responseMsg.style.display = 'none';
+              responseMsg.className = 'form-msg';
+            }
+          }, 5000);
         } else {
+          alert("Submission error: " + result.message);
           if (responseMsg) {
-            responseMsg.style.color = '#ff4a4a';
+            responseMsg.className = 'form-msg error';
+            responseMsg.style.display = 'block';
             responseMsg.textContent = t.contact_error || 'Submission failed. Please try again.';
           }
         }
       } catch (error) {
+        alert("Network error: " + error.message);
         if (responseMsg) {
-          responseMsg.style.color = '#ff4a4a';
-          responseMsg.textContent = t.contact_error || 'Network error. Please try again later.';
+          responseMsg.className = 'form-msg error';
+          responseMsg.style.display = 'block';
+          responseMsg.textContent = currentLang === 'en' 
+            ? 'Network error. Please try again later.' 
+            : 'خطأ في الاتصال بالشبكة. يرجى المحاولة مرة أخرى لاحقاً.';
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = submitBtn.getAttribute('data-original-text') || 'GET YOUR FREE QUOTE';
         }
       }
     });

@@ -12,8 +12,8 @@
       document.documentElement.setAttribute('lang', lang);
     })();
   </script>
-  <script type="module" crossorigin src="/assets/index-fAN_5ByZ.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DBZhWxNx.css">
+  <script type="module" crossorigin src="/assets/index-mbpZ8ZOs.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-9GDCuLE_.css">
 </head>
 <body>
 
@@ -31,6 +31,7 @@
         <li><a href="#portfolio" data-translate="nav_portfolio">Portfolio</a></li>
         <li><a href="#pricing" data-translate="nav_pricing">Pricing</a></li>
         <li><a href="about.html" data-translate="nav_about_us">About Us</a></li>
+        <li class="mobile-only-nav"><a href="#contact" data-translate="nav_book" class="mobile-cta-btn">Book a Scan</a></li>
       </ul>
     </nav>
     
@@ -353,7 +354,7 @@
         <p data-translate="contact_subtitle">Get in touch with our team for a customized quote or to book a spatial capture session.</p>
         
         <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem; color: var(--text-muted);">
-          <div><strong data-translate="footer_email">Email:</strong> <a href="mailto:scans@prespectraspace.com" class="email-link">scans@prespectraspace.com</a></div>
+          <div><strong data-translate="footer_email">Email:</strong> <a href="mailto:scans@prespectra-space.com" class="email-link">scans@prespectra-space.com</a></div>
           <div><strong data-translate="footer_tel">Tel:</strong> <a href="tel:+9647709026327" class="tel-link" dir="ltr">+964 770 902 6327</a> - <a href="tel:+9647807306365" class="tel-link" dir="ltr">+964 780 730 6365</a></div>
         </div>
       </div>
@@ -361,13 +362,13 @@
       <!-- Contact Quote Form -->
       <div class="contact-form-box">
         <h3 class="contact-form-title" data-translate="contact_title">Initiate Your Scan</h3>
-        <form id="quote-form" onsubmit="event.preventDefault();">
+        <form id="quote-form">
           <div class="form-grid">
-            <input type="text" class="form-input" id="form-name" placeholder="Your Name" required data-translate-placeholder="contact_name">
-            <input type="email" class="form-input" id="form-email" placeholder="Email Address" required data-translate-placeholder="contact_email">
-            <input type="tel" class="form-input" id="form-phone" placeholder="Phone Number" required data-translate-placeholder="contact_phone">
-            <input type="text" class="form-input" id="form-size" placeholder="Approximate Space Size" required data-translate-placeholder="contact_space_size">
-            <textarea class="form-input form-full" id="form-details" placeholder="Project details or custom requests..." data-translate-placeholder="contact_details"></textarea>
+            <input type="text" class="form-input" id="form-name" name="name" placeholder="Your Name" required data-translate-placeholder="contact_name">
+            <input type="email" class="form-input" id="form-email" name="email" placeholder="Email Address" required data-translate-placeholder="contact_email">
+            <input type="tel" class="form-input" id="form-phone" name="phone" placeholder="Phone Number" required data-translate-placeholder="contact_phone">
+            <input type="text" class="form-input" id="form-size" name="spaceSize" placeholder="Approximate Space Size" required data-translate-placeholder="contact_space_size">
+            <textarea class="form-input form-full" id="form-details" name="details" placeholder="Project details or custom requests..." data-translate-placeholder="contact_details"></textarea>
           </div>
           <button class="btn-submit" type="submit" id="submit-btn" data-translate="contact_btn">GET YOUR FREE QUOTE</button>
           <div class="form-msg" id="form-response"></div>

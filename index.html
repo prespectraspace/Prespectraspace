@@ -363,11 +363,11 @@
         <h3 class="contact-form-title" data-translate="contact_title">Initiate Your Scan</h3>
         <form id="quote-form">
           <div class="form-grid">
-            <input type="text" class="form-input" id="form-name" placeholder="Your Name" required data-translate-placeholder="contact_name">
-            <input type="email" class="form-input" id="form-email" placeholder="Email Address" required data-translate-placeholder="contact_email">
-            <input type="tel" class="form-input" id="form-phone" placeholder="Phone Number" required data-translate-placeholder="contact_phone">
-            <input type="text" class="form-input" id="form-size" placeholder="Approximate Space Size" required data-translate-placeholder="contact_space_size">
-            <textarea class="form-input form-full" id="form-details" placeholder="Project details or custom requests..." data-translate-placeholder="contact_details"></textarea>
+            <input type="text" class="form-input" id="form-name" name="name" placeholder="Your Name" required data-translate-placeholder="contact_name">
+            <input type="email" class="form-input" id="form-email" name="email" placeholder="Email Address" required data-translate-placeholder="contact_email">
+            <input type="tel" class="form-input" id="form-phone" name="phone" placeholder="Phone Number" required data-translate-placeholder="contact_phone">
+            <input type="text" class="form-input" id="form-size" name="spaceSize" placeholder="Approximate Space Size" required data-translate-placeholder="contact_space_size">
+            <textarea class="form-input form-full" id="form-details" name="details" placeholder="Project details or custom requests..." data-translate-placeholder="contact_details"></textarea>
           </div>
           <button class="btn-submit" type="submit" id="submit-btn" data-translate="contact_btn">GET YOUR FREE QUOTE</button>
           <div class="form-msg" id="form-response"></div>
